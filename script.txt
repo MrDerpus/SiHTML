@@ -39,11 +39,11 @@ html
 		@inject | <h1>You can inject proper HTML using the @inject function</h1>
 
 		// Setting Variables
-		@var | int a = 0
-		@var | int b = 1
-		@var | int c = 2
-		@var | int d = 3
-		@var | int e = 4
+		@var | a = 0
+		@var | b = 1
+		@var | c = 2
+		@var | d = 3
+		@var | e = 4
 
 		// Displaying variables
 		ul #id-4 > li| $a | $b | $c | $d | $e
