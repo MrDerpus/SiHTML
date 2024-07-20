@@ -1,7 +1,7 @@
 '''
 Author: MrDerpus
 
-Version: 2.2.0 -A
+Version: 2.3.0 -A
 
 Dev / compatibility conditions:
 Fedora  38 Python 3.12.1
@@ -22,11 +22,11 @@ from settings import HASH, COMMENTS, SYNTAX, VALID
 
 
 #Version program,
-version = '2.2.0 -A'
+version = '2.3.0 -A'
 
 # custom function to test if a string is wrapped in a specific char.
 # remove for version 0.0.3 - never used.
-# Lol it's still here in v2.1.1 -A.
+# Lol it's still here in v2.3.0 -A.
 def isWrapped(string:str, char:str='"'):
 	if(string[0] and string[len(string)-1] != char):
 		return False
@@ -333,6 +333,7 @@ def build(input_file:str, output_file:str, formatter:bool):
 				elif(custom == 'favicon'):
 					custom = 'icon'
 
+				# CUSTOM TAG HANDLING
 				match custom:
 					case 'html':
 						converted_line = '<!DOCTYPE html>\n<html>'
@@ -362,57 +363,25 @@ def build(input_file:str, output_file:str, formatter:bool):
 							VALID.SYNTAX[innerText] = value
 
 							match innerText: 
-								case 'SYNTAX.SEPARATOR':
-									SYNTAX.SEPARATOR = value
-
-								case 'SYNTAX.CLOSE':
-									SYNTAX.CLOSE = value
-
-								case 'SYNTAX.ID':
-									SYNTAX.ID = value
-
-								case 'SYNTAX.CLASS':
-									SYNTAX.CLASS = value
-
-								case 'SYNTAX.TAG_ATTRIBUTE':
-									SYNTAX.TAG_ATTRIBUTE = value
-
-								case 'SYNTAX.FUNCTION':
-									SYNTAX.FUNCTION = value
-
-								case 'SYNTAX.VARIABLE':
-									SYNTAX.VARIABLE = value
-
-								case 'SYNTAX.CHILD':
-									SYNTAX.CHILD = value
+								case 'SYNTAX.SEPARATOR': SYNTAX.SEPARATOR = value
+								case 'SYNTAX.CLOSE': SYNTAX.CLOSE = value
+								case 'SYNTAX.ID': SYNTAX.ID = value
+								case 'SYNTAX.CLASS': SYNTAX.CLASS = value
+								case 'SYNTAX.TAG_ATTRIBUTE': SYNTAX.TAG_ATTRIBUTE = value
+								case 'SYNTAX.FUNCTION': SYNTAX.FUNCTION = value
+								case 'SYNTAX.VARIABLE': SYNTAX.VARIABLE = value
+								case 'SYNTAX.CHILD': SYNTAX.CHILD = value
 
 
-					case 'var': # @var | string test = This is a test!
-						line = line.replace('=', ' = ').replace('+', ' + ').replace('-', ' - ')
-						variable['type']  = line.split()[2]
-						variable['name']  = line.split()[3]
-						variable['operator'] = line.split()[4]
-						variable['value'] = line.split()[5]
-						
-						match str(f"{variable['type']}"):
-							case 'int':
-								variable['value'] = int(variable['value'])
 
-							case 'string':
-								variable['value'] = line.split('"')[1].replace('"', '')
-								variable['value'] = str(variable['value'])
-
-						if(variable['operator'] == '='):
+					# VARIABLES
+					# @var | x = int(11 / 2)
+					case 'var':
+						if('os.' in line): pass # ignore
+						else:
+							variable['name']  = line.split()[2]
+							variable['value'] = eval(''.join(map(str, line.split('=')[1:])))
 							user_variables[variable['name']] = variable['value']
-						
-						if(variable['name'] in user_variables):
-							match variable['operator']:
-								case '+':
-									user_variables[variable['name']] += variable['value']
-
-
-								case '-':
-									user_variables[variable['name']] -= variable['value']
 
 
 					case 'inject':

@@ -1,50 +1,33 @@
-Implemented a new update procedure:
-Updates will no longer be incorporated directly into the main.py file.
-
-Instead, they will be stored in the LOG.txt file.
-Each update, including this one, will have its own branch.
-
-
-
+v2.3.0 -A
 
 [======= NEW FEATURES AND BUG FIXES =======]
-+ Cleaned up code a little bit. I discovered that I can use the '.strip()'
-command instead of having to use '.lstrip().rstrip()'
 
++ Changed how variables are declared!
+ - Variable Declaration:
+   To declare a variable in SiHTML, use the @var command followed by the
+   variable name and its initial value. For example:
+   `@var | x = 4`  This line declares a variable x and initializes it with the value 4.
 
-+ Resolved an issue where a div couldn't be properly closed using the
-SYNTAX.CLOSE command with a self-closing tag.
+   Variable Reference:
+   To reference a variable in SiHTML, use the var["variable_name"] syntax. For instance:
+   `@var | y = 7 + var["x"]`  Here, y is assigned the value 7 plus the value of variable x.
 
+   Data Type Casting:
+   You can perform data type casting in SiHTML using standard function syntax. For example:
+   `@var | z = int( (var["x"] + var["y"]) / 2)` In this case, the expression
+   int( var["x"] + var["y"] ) converts the sum of variables x and y to an integer
+   before dividing by 2 and assigning the result to variable z.
 
-+ Corrected a spelling mistake in the error display.
+   !!! This uses the `eval()` command within Python. !!!
 
+   I have taken minimal action to filter out potential security issues.
 
-+ Added new Tags:
-textarea, object, iframe, map, abbr, acronym, address, article, form
-
-
-+ Fixed new lines.
-You can now use new lines in your code.
-h1 | Hello /n World!
-
-
-+ Added better commenting.
-I fixed a bug where I broke script comments.
-I changed the HTML comments to ( -- ),
-& SiHTML comments are now set to ( // ).
-
-
-
-
-
-[======= SUBJECT TO CHANGE / RECLASSIFICATION OF ERRORS =======]
-! All @commands and tags require the syntax separator to take values.
-This will be changed in the next couple of versions.
-@set | SYNTAX.CLASS ..
-
-This now longer seen as an error or a bug, this is now intentional.
-and this entry will be removed in the next update.
-
+   Please note that it's essential to review and understand any code that you copy & paste
+   or import into your projects. Code snippets, libraries, or modules obtained from external
+   sources may have varying levels of quality, compatibility, and security implications.
+   By incorporating such code into your projects, you assume responsibility for its functionality
+   and potential impact on your system. Always verify and adapt imported code to suit your specific
+   needs and adhere to best practices for security and performance.
 
 
 
@@ -67,14 +50,6 @@ will get proper functionality in the next update.
 
 
 [======= SIDE NOTES / PLANS =======]
-? This entire project is subject to a full rewrite.
-This project is over 500+ lines long and doesn't have proper
-code documentation.
-
-? I want to change how variables work.
-Nothing super major.
-
-
 ? I want add multiline comments.
 This is a low priority.
 
