@@ -10,7 +10,7 @@ html
 
 	body.class#id
 		
-		@var | string version = "2.2.0 -A"
+		@var | string version = "2.3.0 -A"
 
 
 		h1 | SiHTML v$version
