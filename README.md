@@ -1,7 +1,7 @@
 ![silogo](https://github.com/user-attachments/assets/75ae3909-1a7d-45d0-92c3-5d402f78d5af)
 
 
-# SiHTML (Simple HTML) v2.3.0 - Alpha
+# SiHTML (Simple HTML) v2.4.0 - Alpha
 
 ### SiHTML is a custom programming language designed to streamline the process of creating webpages by offering a simplified syntax reminiscent of the popular EMMET plugin syntax found in various code editors. SiHTML aims to empower developers of all experience levels by eliminating the need for manually closing tags and ensuring correct tag order, thus enabling rapid webpage development without sacrificing flexibility or control.
 
@@ -19,6 +19,8 @@
 
 - **Variable Declaration:** SiHTML introduces a straightforward mechanism for declaring variables within HTML markup, enhancing the language's flexibility and expressiveness. Variables in SiHTML follow a simple syntax and can be used to insert values into the generated HTML output dynamically. 
 
+- **Optional, Automatic Code Formatting with BeautifulSoup:** SiHTML offers an optional integration with BeautifulSoup4 to automatically format the generated HTML code. This feature ensures that the output HTML is clean, well-indented, and adheres to best practices, enhancing readability and maintainability. By enabling the `--formatter` option during compilation, developers can leverage BeautifulSoup4 to format their HTML effortlessly.
+
 **Example Usage:**
 
 Below is an example of SiHTML code compared to traditional HTML:
@@ -35,7 +37,7 @@ Traditional HTML:
 	<body>
 		<h1 id="idName" class="className">Hello World!</h1>
 		<h1 style="color:#f00;">Greetings!</h1>
-		<h2>Variable string!</h2>
+		<h2>HTML does not support variables.</h2>
 	</body>
 </html>
 ```
@@ -47,7 +49,7 @@ html
 		title | TITLE GOES HERE
 		stylesheet | stylesheet.css
 
-	@var | variable_name = "Variable string!"
+	    @var | variable_name = "SiHTML supports variables!"
 
 		h1 #idName .className | Hello World!
 		h1 | Greetings ~% style="color:#f00;"
@@ -65,7 +67,7 @@ html
 > 3. Copy & Paste ```python -m venv env && source env/bin/activate && pip install -r reqs.txt```
 
 - ## for Windows:
-> 3. Copy & Paste ```python -m venv env && source env\Scripts\activate && pip install -r reqs.txt```
+> 3. Copy & Paste ```python -m venv env && env\Scripts\activate && pip install -r reqs.txt```
 
 
 
