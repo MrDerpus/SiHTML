@@ -1,7 +1,6 @@
 -- HTML COMMENT, can bee seen in HTML document!
 // SCRIPT COMMENT, can only been seen in SiHTML scripts!
 
-
 html
 	head
 		title | WEBPAGE
@@ -9,31 +8,31 @@ html
 		stylesheet | styles.css
 
 
-	body .class #id
+	body.class#id
 		
-		@var | version = "2.4.0 -A"
+		@var | string version = "2.3.0 -A"
+
 
 		h1 | SiHTML v$version
 		br
 
 
 
-		h1 #id-1 | Hello World!
-		h2 #id-2 | Hello World! ~% style="text-decoration: underline;"
+		h1#id-1|Hello World!
+		h2 #id-2|Hello World! ~% style="text-decoration: underline;"
 
 
-		//@inject | <a href=google.com style="color: #f0b">yay</a><br>
+		a | yay ~% href="google.com" style="color: #f0b;"
 		img | icon.png
-		a   | yay ~% href="https://www.google.com" style="color: #f0b;"
 
 
 		// You can change some language syntax depending
 		// on how you would like it to look.
 		@set | SYNTAX.CLOSE ~#
 
-		div .cen | ~% style="background-color:#444;"
-			h5 #id-5 | Hello World!
-			h6 #id-6 | Hello World! ~#
+		div.cen | ~% style="background-color:#444;"
+			h5#id-5|Hello World!
+			h6#id-6|Hello World! ~#
 		@set | SYNTAX.CLOSE ~;
 
 
@@ -46,17 +45,14 @@ html
 		@var | d = 3
 		@var | e = 4
 
-		@var | x = user_variables['b'] + user_variables['c']
-		h2 | $x
-
 		// Displaying variables
-		ul #id-4 > li | $a | $b | $c | $d | $e | $a
-		ul #id-1 > li | $a | $b | $c this is a test | $d | $e
-		p | You can now use variables and text in your list items!
+		ul #id-4 > li| $a | $b | $c | $d | $e
+		ul#id-1>li | $a | $b | $c this is a test | $d | $e
+		p | for now, you are unable to have text and variables in the same list element.
 
 
-		ul #id-3 > li | Hello | World | I hope | This | Works
+		ul#id-3>li| Hello | World | I hope | This | Works
 
-		ol #id-1 > li | hello | World | I hope | This | Works | $e woah $b
+		//ol#id-1>li| hello |  World | I hope | This | Works
 
-		p | Hello World! /n lol $e
+		p|Hello World! /n lol
