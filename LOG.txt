@@ -1,34 +1,24 @@
-v2.3.0 -A
+v2.4.0 -A
+
+I've been sitting on this fix since October 2024, I have no idea why I hadn't
+uploaded this until now.
+
 
 [======= NEW FEATURES AND BUG FIXES =======]
++ Fixed the bug where you couldn't have text and variables in a list item.
 
-+ Changed how variables are declared!
- - Variable Declaration:
-   To declare a variable in SiHTML, use the @var command followed by the
-   variable name and its initial value. For example:
-   `@var | x = 4`  This line declares a variable x and initializes it with the value 4.
 
-   Variable Reference:
-   To reference a variable in SiHTML, use the var["variable_name"] syntax. For instance:
-   `@var | y = 7 + var["x"]`  Here, y is assigned the value 7 plus the value of variable x.
++ Added all valid HTML5 tags.
+	- I have added all HTML5 tags into their correct lists inside of 'settings.py',
+	thanks to ChatGPT.  However, I have not tested these new tags & some may need to be redefined/re-classed. 
 
-   Data Type Casting:
-   You can perform data type casting in SiHTML using standard function syntax. For example:
-   `@var | z = int( (var["x"] + var["y"]) / 2)` In this case, the expression
-   int( var["x"] + var["y"] ) converts the sum of variables x and y to an integer
-   before dividing by 2 and assigning the result to variable z.
 
-   !!! This uses the `eval()` command within Python. !!!
++ Tested on Python 3.13.1.
+	- This project works with python 3.13.1  Woohoo!
 
-   I have taken minimal action to filter out potential security issues.
 
-   Please note that it's essential to review and understand any code that you copy & paste
-   or import into your projects. Code snippets, libraries, or modules obtained from external
-   sources may have varying levels of quality, compatibility, and security implications.
-   By incorporating such code into your projects, you assume responsibility for its functionality
-   and potential impact on your system. Always verify and adapt imported code to suit your specific
-   needs and adhere to best practices for security and performance.
-
++ Removed dead code that lay dormant in the code.
+	- Gone.
 
 
 
@@ -37,25 +27,24 @@ x Lists (ol & ul) are currently unable to receive tag attributes.
 This is considered a low-priority fix.
 
 
-x Enabled the use of variables in lists; however, they cannot include
-text simultaneously at this time.
-This is categorized as a high-priority fix.
+x Some tags still requiring manual tag closure.
+This goes against the simplicity I’m aiming for and makes the language a bit less intuitive to use.
 
-
-x I have added some code that does nothing as of yet, this
-will get proper functionality in the next update.
-(This is related to variables in lists).
-
+The tags requiring manual closure are listed in the HTML_NON_INTERVENTION variable in the settings.py file
+but I will post it here too:
+HTML_NON_INTERVENTION:list = [
+	'abbr', 'address', 'aside', 'article', 'blockquote',
+	'button', 'caption', 'colgroup', 'dialog', 'details',
+	'div', 'figure', 'figcaption', 'footer', 'header',
+	'head', 'main', 'nav', 'span'
+]
+This is high priority.
 
 
 
 [======= SIDE NOTES / PLANS =======]
 ? I want add multiline comments.
-This is a low priority.
-
-
-? I want to add ALL HTML tags.
-This is high priority.
+This is low priority.
 
 
 ? I want to clean and refactor code where it is needed.
