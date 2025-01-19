@@ -44,16 +44,15 @@ Traditional HTML:
 
 SiHTML syntax:
 ```html
-html
-	head
-		title | TITLE GOES HERE
-		stylesheet | stylesheet.css
+head
+	title | TITLE GOES HERE
+	stylesheet | stylesheet.css
 
-	    @var | variable_name = "SiHTML supports variables!"
-
-		h1 #idName .className | Hello World!
-		h1 | Greetings ~% style="color:#f00;"
-		h2 | $variable_name
+body
+	@var | variable_name = "SiHTML supports variables!"
+	h1 #idName .className | Hello World!
+	h1 | Greetings ~% style="color:#f00;"
+	h2 | $variable_name
 ```
 
 
@@ -78,6 +77,6 @@ The SiHTML compiler is a command line tool that has one command: ```'build'``` a
 2. ```--output_file``` (```-o```) : The name of the HTML file you wish to name. (index.html)
 3. ```--formatter``` (```-f```)   : Enable the BeautifulSoup4 HTML formatter. (Set to false by default)
 
-In the terminal
+In the terminal, type:
 ```python main.py build -i script.txt -o index.html -f True```
 
